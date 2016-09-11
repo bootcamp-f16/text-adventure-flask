@@ -49,6 +49,37 @@ class Game():
 
         return game_display
 
+    def process(self, user_input):
+        request = Request(user_input)
+        response = Response()
+
+        for action in self.actions:
+            if(action.should_take_action(request)):
+                action.take_action(request, response, self)
+
+        for action in self.current_room.actions:
+            if(action.should_take_action(request)):
+                action.take_action(request, response, self)
+
+        if self.current_room.npc is not None:
+            npc = self.current_room.npc
+            for action in npc.actions:
+                if(action.should_take_action(request)):
+                    action.take_action(request, response, self)
+
+        if self.current_room.clue is not None:
+            clue = self.current_room.clue
+            for action in clue.actions:
+                if(action.should_take_action(request)):
+                    action.take_action(request, response, self)
+
+        if not request.action_taken:
+            response.addOutput("Invalid input")
+
+        self.check_conditions(request, response)
+
+        return response.draw()
+
     def run(self):
 
         response = Response()

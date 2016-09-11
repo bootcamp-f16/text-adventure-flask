@@ -1,10 +1,40 @@
 {% extends "base.html" %}
 
 {% block content %}
-
 <div class="well">
     <pre>
 {{game_display}}
     </pre>
 </div>
+{% if action_result %}
+<div class="alert alert-info" role="alert">
+    <pre>
+{{action_result}}
+    </pre>
+</div>
+{% endif %}
+
+{% if should_exit %}
+    <form action="{{url_for('new_game')}}" method="POST">
+        <button type="submit" class="btn btn-primary btn-lg btn-block">PLAY A NEW GAME</button>
+    </form>
+{% else %}
+    <div class="game-form">
+        <form action="{{url_for('run_game')}}" method="POST">
+            <div class="form-group">
+                {{game_form.user_input(class='form-control input-lg', placeholder='Enter an action')}}
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg btn-block">SUBMIT</button>
+        </form>
+    </div>
+{% endif %}
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript">
+        $(function() {
+            $('#user_input').focus();
+            $('#user_input').val('');
+        });
+    </script>
 {% endblock %}

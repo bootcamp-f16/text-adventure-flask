@@ -1,7 +1,8 @@
-from flask import render_template, redirect, url_for
+from flask import request, render_template, redirect, url_for
 
 from app import app
 from app.lib.games import Game
+from app.forms import GameForm
 
 @app.route("/")
 def index():
@@ -21,7 +22,19 @@ def run_game():
         app.game.setup_game()
 
     game = app.game
+    form = GameForm(request.form)
+
+    if request.method == "POST" and form.validate():
+        print("Hello")
+        action_result = game.process(form.user_input.data)
+        dir(action_result)
+    else:
+        action_result=""
+
     game_display = game.get_game_display()
 
     return render_template("game.html",
-        game_display="\n".join(game_display))
+        game_display="\n".join(game_display),
+        game_form=form,
+        action_result=action_result,
+        should_exit=game.should_exit)
