@@ -8,11 +8,31 @@
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
+    <link rel="stylesheet" href="{{url_for('static', filename='styles.css')}}">
+    <script src="https://use.fontawesome.com/205ad09178.js"></script>
 </head>
 <body>
-    {% block content %}
+    <header>
+        <div class="container">
+            <h1>
+                <a href="{{url_for('index')}}">GITHUB ADVENTURES</a>
+                <small>
+                    find your way past the Github Overlord
+                </small>
+            </h1>
+        </div>
+    </header>
+    <div class="container main-content">
+        {% block content %}
 
-    {% endblock %}
+        {% endblock %}
+    </div>
+    <footer>
+        <hr>
+        <div class="container">
+            &copy; Awesome Inc U. Bootcamp 2016
+        </div>
+    </footer>
 
     <script   src="https://code.jquery.com/jquery-3.1.0.min.js"   integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="   crossorigin="anonymous"></script>
     <!-- Latest compiled and minified JavaScript -->

@@ -1,0 +1,16 @@
+.main-content {
+    min-height: 500px;
+}
+
+.new-game-form {
+    margin-top: 100px;
+    text-align: center;
+}
+
+.new-game-form .fa-github-alt {
+    font-size: 160px;
+}
+
+.new-game-form form {
+    margin-top: 100px;
+}
