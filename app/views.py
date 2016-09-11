@@ -25,9 +25,7 @@ def run_game():
     form = GameForm(request.form)
 
     if request.method == "POST" and form.validate():
-        print("Hello")
         action_result = game.process(form.user_input.data)
-        dir(action_result)
     else:
         action_result=""
 
