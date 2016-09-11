@@ -1,6 +1,6 @@
-# Flask Package
+# Text Adventure Flask
 
-Create a flask app as a package and a run script to actually run the application
+Text adventure ported to use Flask for a browser based GUI
 
 ## Setup
 * `mkvirtualenv -p python3 flask-package`
